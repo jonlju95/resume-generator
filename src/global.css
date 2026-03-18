@@ -1,0 +1,17 @@
+:root {
+    --primary: #65171E; /*Export PDF, active language toggle*/
+    --primary-hover: #4E1118; /*Button hover state*/
+    --primary-light: #F5E8E9; /*Danger button bg, primary pill bg*/
+    --primary-border: #C4484F; /*Danger button border*/
+    --neutral-50: #F7F5F2; /*App background*/
+    --neutral-100: #EDE9E4; /*Sidebar bg, hover states*/
+    --neutral-200: #D9D3CC; /*Borders, dividers*/
+    --neutral-400: #9E968E; /*Placeholder, tertiary text*/
+    --neutral-600: #5C5650; /*Secondary text, labels*/
+    --neutral-900: #1A1714; /*Primary text, headings*/
+    --surface: #FFFFFF; /*Cards, inputs, preview pane*/
+    --border: rgba(26, 23, 20, 0.10); /*Default borders*/
+    --border-strong: rgba(26, 23, 20, 0.20); /*Input borders, emphasis*/
+    --font-sans: 'DM Sans'; /*All UI text*/
+    --font-mono: 'DM Mono'; /*File names, token values*/
+}
