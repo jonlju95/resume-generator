@@ -7,6 +7,8 @@
     border: 2px solid var(--neutral-200);
     border-radius: 0.5rem;
     flex: 1;
+    color: var(--neutral-900);
+
     transition: all 0.15s;
 }
 
@@ -17,5 +19,5 @@
 
 .selectorBtn:hover:not(.selected) {
     background: var(--neutral-200);
-    color: var(--neutral-900);
+    color: var(--neutral-600);
 }

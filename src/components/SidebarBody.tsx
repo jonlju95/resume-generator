@@ -11,11 +11,13 @@ interface FieldFormProps {
 
 const SidebarBody = ({template, onChange}: FieldFormProps) => {
     const {register, watch} = useForm<FieldValues>()
-    const values = watch()
 
     useEffect(() => {
-        onChange(values)
-    }, [values])
+        const subscription = watch((values) => {
+            onChange(values as FieldValues)
+        })
+        return () => subscription.unsubscribe()
+    }, [watch, onChange])
 
     return (
         <div className={'sidebarBody'}>

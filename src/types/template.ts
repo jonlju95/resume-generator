@@ -1,4 +1,4 @@
-export type FieldType = 'text' | 'multiline' | 'boolean' | 'skills';
+export type FieldType = 'text' | 'multiline' | 'boolean';
 
 export type FieldDefinition = {
     key: string;

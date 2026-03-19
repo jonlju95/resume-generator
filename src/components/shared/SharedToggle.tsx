@@ -1,4 +1,4 @@
-import styles from './SharedToggle.module.css';
+import styles from '../../styles/SharedToggle.module.css';
 import {FieldDefinition, FieldValues} from "../../types/template.ts";
 import {UseFormRegister} from "react-hook-form";
 

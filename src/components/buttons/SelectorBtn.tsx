@@ -1,4 +1,4 @@
-import styles from './SelectorBtn.module.css';
+import styles from '../../styles/SelectorBtn.module.css';
 
 interface SelectorBtnProps {
     label: string;

@@ -1,4 +1,4 @@
-import styles from './SharedInput.module.css';
+import styles from '../../styles/SharedInput.module.css';
 import {FieldDefinition, FieldValues} from "../../types/template.ts";
 import {UseFormRegister} from "react-hook-form";
 

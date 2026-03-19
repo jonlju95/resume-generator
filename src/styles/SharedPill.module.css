@@ -1,0 +1,31 @@
+.pill {
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.backend {
+    background-color: #E6F1FB;
+    color: #0C447C;
+}
+
+.frontend {
+    background-color: #E1F5EE;
+    color: #085041;
+}
+
+.tools {
+    background-color: #EEEDFE;
+    color: #3C3489;
+}
+
+.methods {
+    background-color: #FAEEDA;
+    color: #633806;
+}
+
+.neutral {
+    background-color: #EDE9E4;
+    color: #2E2A26;
+}
