@@ -8,12 +8,12 @@ interface SelectorBtnProps {
 
 const SelectorBtn = ({label, selected, setSelected}: SelectorBtnProps) => {
     return (
-        <button onClick={setSelected} type="button" className={`${styles.selectorBtn} ${selected ? styles.selected : ''}`}>
+        <button onClick={setSelected} type="button"
+                className={`${styles.selectorBtn} ${selected ? styles.selected : ''}`}>
             {label}
         </button>
     );
 };
-
 
 
 export default SelectorBtn;

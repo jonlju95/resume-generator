@@ -15,7 +15,7 @@ const PreviewPane = ({values, fileName}: PreviewPaneProps) => {
         values.phone,
         values.city,
         values.openToRelocation ? `Open to relocation to ${values.relocationCity}` : null
-    ].filter(Boolean).join(' · ');
+    ].filter(Boolean).join(' | ');
 
     const skillsAdded = () => {
         return values.skillsBackend ||
@@ -40,22 +40,27 @@ const PreviewPane = ({values, fileName}: PreviewPaneProps) => {
                     </div>
                     <p className={styles.contactInfo}>{contactInfo}</p>
                     <div>
-                        <h2>{values.summary && 'Summary'}</h2>
-                        <p>{values.summary as string}</p>
+                        {fileName.includes('resume')
+                            ? (<>
+                                <h2>{values.summary && 'Summary'}</h2><p>{values.summary as string}</p>
+                                <h2 style={{marginTop: '1rem'}}>{skillsAdded() && 'Skills'}</h2>
+                                <PreviewSkillRow label={'Backend'} value={values.skillsBackend as string}
+                                                 type={'backend'}/>
+                                <PreviewSkillRow label={'Frontend'} value={values.skillsFrontend as string}
+                                                 type={'frontend'}/>
+                                <PreviewSkillRow label={'Tools'} value={values.skillsTools as string} type={'tools'}/>
+                                <PreviewSkillRow label={'Methods'} value={values.skillsMethods as string}
+                                                 type={'methods'}/>
+                                <PreviewSkillRow label={'Strengths'} value={values.skillsStrengths as string}
+                                                 type={'neutral'}/>
+                                <PreviewSkillRow label={'Languages'} value={values.skillsLanguages as string}
+                                                 type={'neutral'}/></>)
+                            : (<>
+                                <h2 style={{marginTop: '1rem'}}>{values.coverBody && 'Cover letter body'}</h2>
+                                <p>{values.coverBody as string}</p></>)}
                     </div>
-                    <h2 style={{marginTop: '1rem'}}>{skillsAdded() && 'Skills'}</h2>
-                    <PreviewSkillRow label={'Backend'} value={values.skillsBackend as string} type={'backend'}/>
-                    <PreviewSkillRow label={'Frontend'} value={values.skillsFrontend as string} type={'frontend'}/>
-                    <PreviewSkillRow label={'Tools'} value={values.skillsTools as string} type={'tools'}/>
-                    <PreviewSkillRow label={'Methods'} value={values.skillsMethods as string} type={'methods'}/>
-                    <PreviewSkillRow label={'Strengths'} value={values.skillsStrengths as string} type={'neutral'}/>
-                    <PreviewSkillRow label={'Languages'} value={values.skillsLanguages as string} type={'neutral'}/>
-                    <h2 style={{marginTop: '1rem'}}>{values.coverBody && 'Cover letter body'}</h2>
-                    <p>{values.coverBody as string}</p>
                 </div>
-
             </div>
-
         </div>
     );
 };

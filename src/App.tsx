@@ -21,9 +21,9 @@ function App() {
     return (
         <main className="container">
             <aside className="sidebar">
-                <SidebarHeader onTemplateChange={setFileName} />
+                <SidebarHeader onTemplateChange={setFileName}/>
                 <SidebarBody template={template} onChange={setValues}/>
-                <SidebarFooter/>
+                <SidebarFooter values={values} body={template.body}/>
             </aside>
             <PreviewPane values={values} fileName={fileName}/>
         </main>

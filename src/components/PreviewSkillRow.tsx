@@ -14,7 +14,7 @@ const PreviewSkillRow = ({label, value, type}: PreviewSkillRowProps) => {
         <div className={styles.skillRow}>
             <h5>{label}</h5>
             {(value)?.split(',').map((skill) => (
-                <SharedPill text={skill.trim()} type={type}/>
+                <SharedPill key={skill} text={skill.trim()} type={type}/>
             ))}
         </div>
     );

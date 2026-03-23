@@ -4,6 +4,7 @@ export type FieldDefinition = {
     key: string;
     label: string;
     type: FieldType;
+    group: string;
     default: string | boolean;
 }
 

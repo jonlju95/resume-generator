@@ -32,7 +32,8 @@
       "icons/icon.ico"
     ],
     "resources": {
-      "../src/templates/*": "templates"
+      "../src/templates/*": "templates",
+      "../src/templates/personal/*": "templates/personal"
     }
   }
 }

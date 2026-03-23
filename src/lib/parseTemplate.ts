@@ -1,10 +1,13 @@
 import frontMatter from 'front-matter';
-import { resolveResource } from '@tauri-apps/api/path';
-import { readTextFile } from '@tauri-apps/plugin-fs';
-import { Template, FieldDefinition, FieldType } from '../types/template';
+import {resolveResource} from '@tauri-apps/api/path';
+import {exists, readTextFile} from '@tauri-apps/plugin-fs';
+import {FieldDefinition, FieldType, Template} from '../types/template';
 
 export async function parseTemplate(templateFile: string): Promise<Template> {
-    const resourcePath = await resolveResource(`templates/${templateFile}`);
+    const personalPath = await resolveResource(`./templates/personal/${templateFile}`)
+    const defaultPath = await resolveResource(`templates/${templateFile}`)
+
+    const resourcePath = await exists(personalPath) ? personalPath : defaultPath;
     const raw = await readTextFile(resourcePath);
     const parsed = frontMatter<{ variables: Record<string, any> }>(raw);
 
@@ -13,6 +16,7 @@ export async function parseTemplate(templateFile: string): Promise<Template> {
             key,
             label: value.label,
             type: value.type as FieldType,
+            group: value.group,
             default: value.default,
         })
     );

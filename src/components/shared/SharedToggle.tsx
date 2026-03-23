@@ -14,7 +14,7 @@ const SharedToggle = ({field, register}: SharedToggleProps) => {
             <span className={styles.toggleLabel}>{field.label}</span>
             <label className={styles.switch}>
                 <input type="checkbox" {...register(field.key)}/>
-                <span className={`${styles.slider} ${styles.round}`}></span>
+                <span className={`${styles.slider}`}></span>
             </label>
         </>
     );
