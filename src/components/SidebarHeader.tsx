@@ -5,14 +5,16 @@ interface SelectorBarProps {
     docType?: string;
     docLang?: string;
     onTemplateChange: (fileName: string) => void;
+    onLangChange: (lang: 'en' | 'sv') => void;
 }
 
-const SidebarHeader = ({docType = 'resume', docLang = 'en', onTemplateChange}: SelectorBarProps) => {
+const SidebarHeader = ({docType = 'resume', docLang = 'en', onTemplateChange, onLangChange}: SelectorBarProps) => {
     const [currentDocType, setCurrentDocType] = useState<string>(docType);
     const [currentDocLang, setCurrentDocLang] = useState<string>(docLang);
 
     useEffect(() => {
         onTemplateChange(currentDocType + '.' + currentDocLang + '.md');
+        onLangChange(currentDocLang as 'en' | 'sv');
     }, [currentDocType, currentDocLang]);
 
     return (

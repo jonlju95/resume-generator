@@ -3,13 +3,15 @@ import {save} from '@tauri-apps/plugin-dialog';
 import {writeFile} from '@tauri-apps/plugin-fs'
 import {renderPdf} from "../lib/renderPdf.tsx";
 import {FieldValues} from "../types/template.ts";
+import {ui} from "../i18n/ui.ts";
 
 interface FooterProps {
     values: FieldValues;
     body: string;
+    t: typeof ui['en'];
 }
 
-const SidebarFooter = ({values, body}: FooterProps) => {
+const SidebarFooter = ({values, body, t}: FooterProps) => {
 
     const saveFile = async () => {
         if (!body) return
@@ -23,7 +25,7 @@ const SidebarFooter = ({values, body}: FooterProps) => {
 
     return (
         <div className="sidebarFooter">
-            <Button label={'Export PDF'} onClick={saveFile}/>
+            <Button label={t.export} onClick={saveFile}/>
         </div>
     );
 };

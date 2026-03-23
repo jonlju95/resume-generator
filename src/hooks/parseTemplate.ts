@@ -1,7 +1,7 @@
 import frontMatter from 'front-matter';
 import {resolveResource} from '@tauri-apps/api/path';
 import {exists, readTextFile} from '@tauri-apps/plugin-fs';
-import {FieldDefinition, FieldType, Template} from '../types/template';
+import {FieldDefinition, FieldType, Template} from '../types/template.ts';
 
 export async function parseTemplate(templateFile: string): Promise<Template> {
     const personalPath = await resolveResource(`./templates/personal/${templateFile}`)

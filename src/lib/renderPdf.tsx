@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
         color: '#1A1714',
         lineHeight: 1.6,
     },
-    jobTitle: {fontSize: 13, marginBottom: 10, color: '#9E968E'},
 });
 
 export async function renderPdf(values: FieldValues, body: string): Promise<Blob> {

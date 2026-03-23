@@ -1,13 +1,15 @@
 import styles from '../styles/PreviewPane.module.css';
 import {FieldValues} from "../types/template.ts";
 import PreviewSkillRow from "./PreviewSkillRow.tsx";
+import {ui} from "../i18n/ui.ts";
 
 interface PreviewPaneProps {
     values: FieldValues;
     fileName: string;
+    t: typeof ui['en'];
 }
 
-const PreviewPane = ({values, fileName}: PreviewPaneProps) => {
+const PreviewPane = ({values, fileName, t}: PreviewPaneProps) => {
     const contactInfo = [
         values.email,
         values.linkedinUrl,
@@ -29,7 +31,7 @@ const PreviewPane = ({values, fileName}: PreviewPaneProps) => {
     return (
         <div className={'col'} style={{width: '100%'}}>
             <div className={`'row' ${styles.previewHeader}`}>
-                <div><p>Preview</p></div>
+                <div><p>{t.preview}</p></div>
                 <div className={styles.headerTag}><p>{fileName}</p></div>
             </div>
             <div className={`'row' ${styles.previewBody}`}>
@@ -42,18 +44,18 @@ const PreviewPane = ({values, fileName}: PreviewPaneProps) => {
                     <div>
                         {fileName.includes('resume')
                             ? (<>
-                                <h2>{values.summary && 'Summary'}</h2><p>{values.summary as string}</p>
-                                <h2 style={{marginTop: '1rem'}}>{skillsAdded() && 'Skills'}</h2>
+                                <h2>{values.summary && t.summary}</h2><p>{values.summary as string}</p>
+                                <h2 style={{marginTop: '1rem'}}>{skillsAdded() && t.skills}</h2>
                                 <PreviewSkillRow label={'Backend'} value={values.skillsBackend as string}
                                                  type={'backend'}/>
                                 <PreviewSkillRow label={'Frontend'} value={values.skillsFrontend as string}
                                                  type={'frontend'}/>
-                                <PreviewSkillRow label={'Tools'} value={values.skillsTools as string} type={'tools'}/>
-                                <PreviewSkillRow label={'Methods'} value={values.skillsMethods as string}
+                                <PreviewSkillRow label={t.tools} value={values.skillsTools as string} type={'tools'}/>
+                                <PreviewSkillRow label={t.methods} value={values.skillsMethods as string}
                                                  type={'methods'}/>
-                                <PreviewSkillRow label={'Strengths'} value={values.skillsStrengths as string}
+                                <PreviewSkillRow label={t.strengths} value={values.skillsStrengths as string}
                                                  type={'neutral'}/>
-                                <PreviewSkillRow label={'Languages'} value={values.skillsLanguages as string}
+                                <PreviewSkillRow label={t.lang} value={values.skillsLanguages as string}
                                                  type={'neutral'}/></>)
                             : (<>
                                 <h2 style={{marginTop: '1rem'}}>{values.coverBody && 'Cover letter body'}</h2>

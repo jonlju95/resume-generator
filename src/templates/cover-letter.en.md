@@ -52,4 +52,12 @@ variables:
     default: "Cover letter body"
 ---
 
+# {{fullName}}
+{{jobTitle}}
+
+{{email}} | {{linkedinUrl}} | {{portfolioUrl}} | {{phone}} 
+{{city}}{{#if openToRelocation}} | Öppen för flytt till {{relocationCity}}{{/if}}
+
+---
+
 {{coverBody}}

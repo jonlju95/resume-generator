@@ -83,9 +83,10 @@ variables:
 ---
 
 # {{fullName}}
-**{{jobTitle}}**
+{{jobTitle}}
 
-{{email}} | {{linkedinUrl}} | {{portfolioUrl}} | {{phone}} | {{city}}{{#if openToRelocation}} · Öppen för flytt till {{relocationCity}}{{/if}}
+{{email}} | {{linkedinUrl}} | {{portfolioUrl}} | {{phone}} 
+{{city}}{{#if openToRelocation}} | Öppen för flytt till {{relocationCity}}{{/if}}
 
 ---
 
@@ -97,7 +98,7 @@ variables:
 
 ## Erfarenhet
 
-**Företag — Jobbtitel**
+**Företag – Jobbtitel**
 Plats | Till - Från
 
 - Beskrivning punkt 1
@@ -107,7 +108,7 @@ Plats | Till - Från
 
 ## Utbildning
 
-**Skola — Utbildning**
+**Skola – Utbildning**
 Plats | Till - Från
 
 - Beskrivning punkt 1

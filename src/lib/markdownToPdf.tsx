@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         color: '#9E968E'
     },
     h3: {fontSize: 11, fontWeight: 'bold', marginTop: 10, marginBottom: 2},
+    jobTitle: {fontSize: 13, marginBottom: 10, color: '#9E968E'},
     paragraph: {fontSize: 10, lineHeight: 1.6, marginBottom: 6},
     listItem: {fontSize: 10, lineHeight: 1.6, marginLeft: 12, marginBottom: 2},
     divider: {borderBottomWidth: 0.5, borderBottomColor: '#D9D3CC', marginVertical: 8},
@@ -30,7 +31,7 @@ function renderInline(text: string) {
     })
 }
 
-function renderToken(token: Token, i: number): ReactElement | null {
+function renderToken(token: Token, i: number, isJobTitle: boolean): ReactElement | null {
     switch (token.type) {
         case 'heading':
             const headingStyle = token.depth === 1 ? styles.h1 : styles.h3
@@ -38,7 +39,7 @@ function renderToken(token: Token, i: number): ReactElement | null {
 
         case 'paragraph':
             return (
-                <Text key={i} style={styles.paragraph}>
+                <Text key={i} style={isJobTitle ? styles.jobTitle : styles.paragraph}>
                     {renderInline(token.text)}
                 </Text>
             )
@@ -70,8 +71,13 @@ export function markdownToPdf(markdown: string) {
     const groups: ReactElement[] = []
     let currentGroup: ReactElement[] = []
     let currentHeading: ReactElement | null = null
+    let seenH1 = false
+    let jobTitleRendered = false
 
     tokens.forEach((token, i) => {
+        if (token.type === 'heading' && token.depth === 1) {
+            seenH1 = true
+        }
         if (token.type === 'heading' && token.depth === 2) {
             if (currentHeading) {
                 groups.push(
@@ -90,7 +96,9 @@ export function markdownToPdf(markdown: string) {
             currentHeading = <Text key={i} style={styles.h2}>{token.text}</Text>
             currentGroup = []
         } else {
-            const rendered = renderToken(token, i)
+            const isJobTitle = seenH1 && !jobTitleRendered && token.type === 'paragraph'
+            if (isJobTitle) jobTitleRendered = true
+            const rendered = renderToken(token, i, isJobTitle)
             if (rendered) currentGroup.push(rendered)
         }
     })
@@ -109,7 +117,5 @@ export function markdownToPdf(markdown: string) {
             </View>
         )
     }
-
-    console.log(groups)
     return groups
 }

@@ -11,6 +11,11 @@
     "fs:allow-read-text-file",
     "fs:allow-resource-read-recursive",
     "dialog:allow-save",
-    "fs:allow-write-file"
+    "fs:allow-write-file",
+    "store:default",
+    "store:allow-load",
+    "store:allow-set",
+    "store:allow-get",
+    "store:allow-save"
   ]
 }
