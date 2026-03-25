@@ -12,9 +12,9 @@
   "app": {
     "windows": [
       {
-        "title": "resume-generator",
-        "width": 800,
-        "height": 600
+        "title": "Resume Generator",
+        "width": 1116,
+        "height": 736
       }
     ],
     "security": {
@@ -30,6 +30,10 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "resources": {
+      "../src/templates/*": "templates",
+      "../src/templates/personal/*": "templates/personal"
+    }
   }
 }

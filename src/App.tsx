@@ -1,51 +1,55 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import SidebarHeader from "./components/SidebarHeader.tsx";
+import SidebarBody from "./components/SidebarBody.tsx";
+import {FieldValues, Template} from "./types/template.ts";
+import {parseTemplate} from "./hooks/parseTemplate.ts";
+import {useEffect, useRef, useState} from "react";
+import PreviewPane from "./components/PreviewPane.tsx";
+import SidebarFooter from "./components/SidebarFooter.tsx";
+import {ui} from "./i18n/ui.ts";
+import {loadPersonalDefaults, savePersonalDefaults} from "./hooks/store.ts";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+    const [fileName, setFileName] = useState("resume.en.md");
+    const [template, setTemplate] = useState<Template>();
+    const [values, setValues] = useState<FieldValues>({})
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+    const [lang, setLang] = useState<'en' | 'sv'>('en')
+    const t = ui[lang]
 
-  return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
+    const saveTimeout = useRef<ReturnType<typeof setTimeout>>()
 
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
+    const handleChange = (newValues: FieldValues) => {
+        setValues(newValues)
+        clearTimeout(saveTimeout.current)
+        saveTimeout.current = setTimeout(() => {
+            savePersonalDefaults(newValues as Record<string, string | boolean>).then()
+        }, 500)
+    }
 
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
-    </main>
-  );
+    useEffect(() => {
+        Promise.all([
+            parseTemplate(fileName),
+            loadPersonalDefaults()
+        ]).then(([parsedTemplate, personalDefaults]) => {
+            setTemplate(parsedTemplate)
+            setValues({...values, ...personalDefaults})
+        })
+    }, [fileName])
+
+
+    if (!template) return null;
+
+    return (
+        <main className="container">
+            <aside className="sidebar">
+                <SidebarHeader onTemplateChange={setFileName} onLangChange={setLang}/>
+                <SidebarBody template={template} values={values} onChange={handleChange} t={t}/>
+                <SidebarFooter values={values} body={template.body} t={t}/>
+            </aside>
+            <PreviewPane values={values} fileName={fileName} t={t}/>
+        </main>
+    );
 }
 
 export default App;

@@ -7,12 +7,17 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "dev-tauri": "tauri dev"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.3.2",
     "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-dialog": "^2.6.0",
+    "@tauri-apps/plugin-fs": "^2.4.5",
     "@tauri-apps/plugin-opener": "^2",
+    "@tauri-apps/plugin-store": "^2.4.2",
+    "front-matter": "^4.0.2",
     "gray-matter": "^4.0.3",
     "handlebars": "^4.7.8",
     "marked": "^17.0.4",
@@ -22,6 +27,7 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
+    "@types/marked": "^5.0.2",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",

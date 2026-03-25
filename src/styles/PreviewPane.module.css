@@ -1,0 +1,70 @@
+.previewHeader {
+    padding: 8px 16px;
+    height: 64px;
+    background: var(--neutral-50);
+    border-bottom: 1px solid var(--neutral-200);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+}
+
+.previewBody {
+    padding: 40px;
+    height: 100%;
+    overflow-y: auto;
+    margin-top: -16px;
+    background-color: var(--neutral-100);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.headerTag {
+    background: var(--neutral-100);
+    border: 1px solid var(--neutral-200);
+    border-radius: 999px;
+    padding: 4px 8px;
+}
+
+.bodyContent {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    background-color: #FFF;
+    width: 595px;
+    height: 842px;
+    gap: 1rem;
+}
+
+h3 {
+    color: var(--neutral-400);
+}
+
+h4, h5 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--neutral-600);
+}
+
+h5 {
+    font-size: 0.75rem;
+}
+
+.contactInfo {
+    font-size: 11px;
+    color: var(--neutral-600);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.skillRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    margin-bottom: 1rem;
+}
