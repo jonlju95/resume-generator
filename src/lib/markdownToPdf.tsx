@@ -21,13 +21,15 @@ const styles = StyleSheet.create({
     strong: {fontWeight: 'bold'},
 })
 
+const noHyphenation = (word: string) => [word];
+
 function renderInline(text: string) {
     const parts = text.split(/(\*\*[^*]+\*\*)/g)
     return parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-            return <Text key={i} style={styles.strong}>{part.slice(2, -2)}</Text>
+            return <Text key={i} style={styles.strong} hyphenationCallback={noHyphenation}>{part.slice(2, -2)}</Text>
         }
-        return <Text key={i}>{part}</Text>
+        return <Text key={i} hyphenationCallback={noHyphenation}>{part}</Text>
     })
 }
 
@@ -35,11 +37,11 @@ function renderToken(token: Token, i: number, isJobTitle: boolean): ReactElement
     switch (token.type) {
         case 'heading':
             const headingStyle = token.depth === 1 ? styles.h1 : styles.h3
-            return <Text key={i} style={headingStyle}>{token.text}</Text>
+            return <Text key={i} style={headingStyle} hyphenationCallback={noHyphenation}>{token.text}</Text>
 
         case 'paragraph':
             return (
-                <Text key={i} style={isJobTitle ? styles.jobTitle : styles.paragraph}>
+                <Text key={i} style={isJobTitle ? styles.jobTitle : styles.paragraph} hyphenationCallback={noHyphenation}>
                     {renderInline(token.text)}
                 </Text>
             )
@@ -48,7 +50,7 @@ function renderToken(token: Token, i: number, isJobTitle: boolean): ReactElement
             return (
                 <View key={i}>
                     {token.items.map((item: any, j: number) => (
-                        <Text key={j} style={styles.listItem}>
+                        <Text key={j} style={styles.listItem} hyphenationCallback={noHyphenation}>
                             • {item.text}
                         </Text>
                     ))}
